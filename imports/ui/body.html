@@ -1,13 +1,15 @@
 <body>
-  {{> navBar}}
-
   <div class="container">
     {{#if currentUser}}
       {{#unless currentAvatar}}
-        <h1>Your Avatars</h1>
-        {{> avatarManageList avatars=userAvatars}}
-
-        {{> avatarCreate}}
+        {{#if userAvatars.count}}
+          <h1>Your Avatars</h1>
+          {{> avatarManageList avatars=userAvatars}}
+          <a class="btn btn-default btn-sm" href="#">New</a>
+        {{else}}
+          <h1>Create an Avatar</h1>
+          {{> avatarCreate}}
+        {{/if}}
       {{/unless}}
 
       {{#if currentAvatar}}
@@ -16,46 +18,29 @@
           <h1>Current Avatar</h1>
           {{> avatarDetail}}
         {{/with}}
-
-        <h1>Rooms</h1>
-        {{> roomList rooms=rooms}}
-
-        {{> roomCreate}}
-
-        {{#with currentRoom}}
+        
+        {{#if currentRoom}}
           <h1>Current Room</h1>
-          {{> roomDetail}}
-        {{/with}}
+          {{#with currentRoom}}
+            {{> roomDetail}}
+          {{/with}}
+          <a class="btn btn-default btn-sm" href="#">Leave</a>
+        {{else}}
+          <h1>Rooms</h1>
+          {{> roomList rooms=rooms}}
+          {{> roomCreate}}
+        {{/if}}
 
-        <h1>Messages</h1>
-        {{> messageList messages=roomMessages}}
-        {{> messageCreate}}
+        {{#if currentRoom}}
+          <h1>Messages</h1>
+          {{> messageList messages=roomMessages}}
+          {{> messageCreate}}
+        {{/if}}
 
       {{/if}}
 
+    {{else}}
+      {{> atForm}}
     {{/if}}
   </div>
 </body>
-
-<template name="navBar">
-  <div class="navbar navbar-default" role="navigation">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="#">Meaty</a>
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-          </button>
-    </div>
-    <div class="navbar-collapse collapse">
-<!--       <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Link</a></li>
-      </ul> -->
-      <ul class="nav navbar-nav navbar-right">
-        {{> loginButtons}}
-      </ul>
-    </div>
-  </div>
-</template>
-

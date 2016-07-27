@@ -23,5 +23,9 @@ matb33:collection-hooks
 session
 less
 huttonr:bootstrap3
+accounts-base
 accounts-password
-ian:accounts-ui-bootstrap-3
+#ian:accounts-ui-bootstrap-3
+#accounts-ui
+#useraccounts:unstyled
+useraccounts:bootstrap

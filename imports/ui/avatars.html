@@ -23,7 +23,6 @@
 <template name="avatarManageListItem">
   <li>
     {{#checkbox label=name checked=isSelected onClick=onSelect}}
-      ({{friendlyUsername username}})
       [<a class="js-remove" href="#">delete</a>]
     {{/checkbox}}
   </li>
@@ -32,7 +31,7 @@
 <template name="avatarCreate">
   <form class="js-create">
     <div class="form-group">
-      <label>New Avatar</label>
+      <label>Name</label>
       <input class="form-control" type="text" name="name" placeholder="Ex: Balthazar the Greedy" autocomplete="off" role="search"/>
     </div>
   </form>
