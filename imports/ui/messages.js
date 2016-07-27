@@ -1,5 +1,5 @@
-import { currentAvatar } from '../util/global-trackers.js';
-import { messageEmitter } from '../util/global-emitters.js';
+import { currentAvatar } from '../util/global-trackers';
+import { messageEmitter } from '../util/global-emitters';
 
 import './messages.html';
 

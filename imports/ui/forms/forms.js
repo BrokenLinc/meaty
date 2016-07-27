@@ -1,5 +1,3 @@
-//import { Template } from 'meteor/templating';
-
 import './forms.html';
 
 Template.checkbox.events({

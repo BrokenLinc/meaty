@@ -1,5 +1,5 @@
-import { Messages } from '../api/messages.js';
-import { currentRoom } from './global-trackers.js';
+import { Messages } from '../api/messages';
+import { currentRoom } from './global-trackers';
 
 export const messageEmitter = new EventEmitter();
 

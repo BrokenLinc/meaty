@@ -1,5 +1,4 @@
-import { Avatars } from './avatars.js';
-import { Mongo } from 'meteor/mongo';
+import { Avatars } from './avatars';
 import { check } from 'meteor/check';
  
 export const Messages = new Mongo.Collection('messages');

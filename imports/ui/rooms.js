@@ -1,5 +1,5 @@
-import { Avatars } from '../api/avatars.js';
-import { currentRoom } from '../util/global-trackers.js';
+import { Avatars } from '../api/avatars';
+import { currentRoom } from '../util/global-trackers';
 
 import './rooms.html';
 

@@ -1,4 +1,3 @@
-import { Mongo } from 'meteor/mongo';
 import { check } from 'meteor/check';
  
 export const Rooms = new Mongo.Collection('rooms');

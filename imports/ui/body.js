@@ -1,12 +1,12 @@
-import { Avatars } from '../api/avatars.js';
-import { Rooms } from '../api/rooms.js';
-import { Messages } from '../api/messages.js';
-import { currentAvatar, currentRoom } from '../util/global-trackers.js';
+import { Avatars } from '../api/avatars';
+import { Rooms } from '../api/rooms';
+import { Messages } from '../api/messages';
+import { currentAvatar, currentRoom } from '../util/global-trackers';
 
-import './forms/forms.js';
-import './avatars.js';
-import './rooms.js';
-import './messages.js';
+import './forms/forms';
+import './avatars';
+import './rooms';
+import './messages';
 import './body.html';
 
 Template.body.onCreated(function bodyOnCreated() {

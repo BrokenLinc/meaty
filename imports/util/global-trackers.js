@@ -1,5 +1,5 @@
-import { Avatars } from '../api/avatars.js';
-import { Rooms } from '../api/rooms.js';
+import { Avatars } from '../api/avatars';
+import { Rooms } from '../api/rooms';
 
 export const currentAvatar = new ReactiveVar();
 
