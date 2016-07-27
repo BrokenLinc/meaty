@@ -1,0 +1,8 @@
+{
+  "enableAutoprefixer": true,
+  "autoprefixerOptions": {
+      "browsers": ["> 0.5%", "last 2 versions"],
+      "cascade": true
+  },
+  "useIndex": true
+}

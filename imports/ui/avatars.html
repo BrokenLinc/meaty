@@ -1,0 +1,44 @@
+<template name="avatarList">
+  <ul>
+    {{#each avatars}}
+      {{> avatarListItem}}
+    {{/each}}
+  </ul>
+</template>
+
+<template name="avatarListItem">
+  <li>
+    {{name}}
+  </li>
+</template>
+
+<template name="avatarManageList">
+  <ul>
+    {{#each avatars}}
+      {{> avatarManageListItem}}
+    {{/each}}
+  </ul>
+</template>
+
+<template name="avatarManageListItem">
+  <li>
+    {{#checkbox label=name checked=isSelected onClick=onSelect}}
+      ({{friendlyUsername username}})
+      [<a class="js-remove" href="#">delete</a>]
+    {{/checkbox}}
+  </li>
+</template>
+
+<template name="avatarCreate">
+  <form class="js-create">
+    <div class="form-group">
+      <label>New Avatar</label>
+      <input class="form-control" type="text" name="name" placeholder="Ex: Balthazar the Greedy" autocomplete="off" role="search"/>
+    </div>
+  </form>
+</template>
+
+<template name="avatarDetail">
+  <p>Name: {{name}}</p>
+  <p class="text-muted">Coming soon: equipment, stats, etc.</p>
+</template>

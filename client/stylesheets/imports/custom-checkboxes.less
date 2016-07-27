@@ -1,0 +1,100 @@
+@p: 1px;
+
+// Custom checkboxes
+// https://codepen.io/CreativeJuiz/pen/BiHzp
+// Checkboxes do not scale, and they vary a lot between browsers.
+// So we use a completely custom-checkbox solution.
+// You can use whatever icon you like, but .checked-icon and .unchecked-icon are required.
+.checkbox {
+  > label {
+    cursor: pointer;
+    padding-left: 1.75em;
+
+    @media (min-width: @screen-sm) {
+      .form-inline & {
+        padding-left: 1.75em;
+      }
+    }
+
+    input {
+      // Visually hide the real checkbox
+      width: 0.1px;
+      height: 0.1px;
+      opacity: 0;
+      overflow: hidden;
+      position: absolute;
+      z-index: -1;
+      
+      // Hide the checked icon by default
+      ~ .checked-icon {
+        display:none;
+      }
+      
+      // When the input is checked...
+      &:checked {
+        // Show the checked icon
+        ~ .checked-icon {
+          display:inline;
+        }
+        // Hide the unchecked icon
+        ~ .unchecked-icon {
+          display:none;
+        }
+      }
+
+      &:focus + i,
+      &:focus + i + i {
+        &:after {
+          content: "";
+          display:block;
+          position: absolute;
+          z-index: -1;
+          width: 1.75em;
+          height: 1.75em;
+          border: 2*@p solid @input-border;
+          border-radius: 50%;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+        }
+      }
+    }
+    &, i {
+      line-height:1.25em;
+    }
+    .checked-icon,
+    .unchecked-icon {
+      // From Bootstrap
+      position: absolute;
+      margin: 0 0 0 -1.75em;
+      width: 1.25em;
+      text-align: center;
+
+      // Special offset for square with uneven sizes :/
+      &.fa-square-o,
+      &.fa-check-square-o {
+        text-align: left;
+        margin: 0 0 0 -1.525em;
+        width: auto;
+      }
+    }
+    .checked-icon {
+      // Special color for radio button
+      &.fa-dot-circle-o {
+        &:after {
+          content: "";
+          display: block;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          background-color: @link-color;
+          width: 0.8em;
+          height: 0.8em;
+          z-index: -1;
+          border-radius: 50%;
+        }
+      }
+    }
+  }
+}

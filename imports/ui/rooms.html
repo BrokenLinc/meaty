@@ -1,0 +1,29 @@
+<template name="roomList">
+  <ul>
+    {{#each rooms}}
+      {{> roomListItem}}
+    {{/each}}
+  </ul>
+</template>
+
+<template name="roomListItem">
+  <li>
+    {{#checkbox label=name checked=isSelected onClick=onSelect}}
+      ({{avatarCount}})
+    {{/checkbox}}
+  </li>
+</template>
+
+<template name="roomCreate">
+  <form class="js-create">
+    <div class="form-group">
+      <label>New Room</label>
+      <input class="form-control" type="text" name="name" placeholder="Ex: Le Dungeon" autocomplete="off" role="search"/>
+    </div>
+  </form>
+</template>
+
+<template name="roomDetail">
+  <p>Name: {{name}}</p>
+  {{> avatarList avatars=avatars}}
+</template>
