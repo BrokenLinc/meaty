@@ -9,7 +9,7 @@ mobile-experience       # Packages for a great mobile UX
 mongo                   # The database Meteor supports right now
 blaze-html-templates    # Compile .html files into Meteor Blaze views
 reactive-var            # Reactive variable for tracker
-#jquery                  # Helpful client-side library
+jquery                  # Helpful client-side library
 tracker                 # Meteor's client-side reactive programming library
 
 standard-minifier-css   # CSS minifier run for production mode
@@ -29,3 +29,6 @@ accounts-password
 #accounts-ui
 #useraccounts:unstyled
 useraccounts:bootstrap
+peppelg:bootstrap-3-modal
+mizzao:bootboxjs
+raix:eventemitter

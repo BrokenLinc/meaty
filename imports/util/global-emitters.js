@@ -4,6 +4,7 @@ import { currentRoom } from './global-trackers';
 export const messageEmitter = new EventEmitter();
 
 // Watch for "new" messages (added since tracking started)
+// ONLY look in current room
 let messageTrackerHandler;
 Tracker.autorun(function () {
 	if(!currentRoom.get()) return;
@@ -18,8 +19,8 @@ Tracker.autorun(function () {
 			$gte : new Date()
 		}
 	}).observeChanges({
-	   added: function (id, fields) {
-	   	 messageEmitter.trigger('message-new', arguments);
-	   }
+		added: function (id, fields) {
+			messageEmitter.trigger('message-new', fields);
+		}
 	});
 });

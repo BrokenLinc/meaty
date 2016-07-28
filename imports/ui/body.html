@@ -2,14 +2,7 @@
   <div class="container">
     {{#if currentUser}}
       {{#unless currentAvatar}}
-        {{#if userAvatars.count}}
-          <h1>Your Avatars</h1>
-          {{> avatarManageList avatars=userAvatars}}
-          <a class="btn btn-default btn-sm" href="#">New</a>
-        {{else}}
-          <h1>Create an Avatar</h1>
-          {{> avatarCreate}}
-        {{/if}}
+        {{> avatarSelection}}
       {{/unless}}
 
       {{#if currentAvatar}}
@@ -24,7 +17,7 @@
           {{#with currentRoom}}
             {{> roomDetail}}
           {{/with}}
-          <a class="btn btn-default btn-sm" href="#">Leave</a>
+          <a class="btn btn-default btn-sm" href="#">Leave (Todo)</a>
         {{else}}
           <h1>Rooms</h1>
           {{> roomList rooms=rooms}}
@@ -38,6 +31,8 @@
         {{/if}}
 
       {{/if}}
+
+      {{> mainMenu}}
 
     {{else}}
       {{> atForm}}
