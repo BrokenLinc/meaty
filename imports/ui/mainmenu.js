@@ -4,16 +4,25 @@ let mainMenuIsOpen = false;
 
 function toggleMainMenu() {
   if(mainMenuIsOpen) {
-    Modal.hide();
+    closeMainMenu();
   } else {
-    Modal.show('mainMenu', function() {
-
-    },{
-      keyboard: false,
-      backdrop: 'static'
-    });
+    openMainMenu();
   }
-  mainMenuIsOpen = !mainMenuIsOpen;
+}
+
+function openMainMenu() {
+  Modal.show('mainMenuModal', function() {
+
+  },{
+    keyboard: false,
+    backdrop: 'static'
+  });
+  mainMenuIsOpen = true;
+}
+
+function closeMainMenu() {
+  Modal.hide();
+  mainMenuIsOpen = false;
 }
 
 function watchKeys(event) {
@@ -23,11 +32,13 @@ function watchKeys(event) {
   }
 }
 
-Template.mainMenu.onRendered(function(){
+Template.mainMenu.onCreated(function(){
+  mainMenuIsOpen = false;
   window.addEventListener('keyup', watchKeys);
 });
 
 Template.mainMenu.onDestroyed(function(){
+  console.log('onDestroyed');
   window.removeEventListener('keyup', watchKeys);
 });
 
@@ -43,13 +54,18 @@ Template.mainMenuModal.events({
 
     Session.set('avatarId', undefined);
 
-    Modal.hide();
+    closeMainMenu();
   },
   'click .js-logout'(event) {
     event.preventDefault();
 
     Meteor.logout();
 
-    Modal.hide();
-  }
+    closeMainMenu();
+  },
+  'click .js-closeMenu'(event) {
+    event.preventDefault();
+
+    closeMainMenu();
+  },
 });
