@@ -9,6 +9,11 @@ Template.avatarSelection.events({
     event.preventDefault();
     
     showAvatarCreate.set(true);
+  },
+  'click .js-hideavatarcreate'(event) {
+    event.preventDefault();
+    
+    showAvatarCreate.set(false);
   }
 });
 
