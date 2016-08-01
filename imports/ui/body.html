@@ -8,7 +8,7 @@
       {{#if currentAvatar}}
 
         {{#with currentAvatar}}
-          <h1>Current Avatar</h1>
+          <h1>My Character</h1>
           {{> avatarDetail}}
         {{/with}}
         
@@ -17,15 +17,14 @@
           {{#with currentRoom}}
             {{> roomDetail}}
           {{/with}}
-          <a class="btn btn-default btn-sm" href="#">Leave (Todo)</a>
         {{else}}
-          <h1>Rooms</h1>
+          <h1>Choose a Room</h1>
           {{> roomList rooms=rooms}}
           {{> roomCreate}}
         {{/if}}
 
         {{#if currentRoom}}
-          <h1>Messages</h1>
+          <h1>Chat</h1>
           {{> messageList messages=roomMessages}}
           {{> messageCreate}}
         {{/if}}

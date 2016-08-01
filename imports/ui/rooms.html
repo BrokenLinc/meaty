@@ -8,9 +8,7 @@
 
 <template name="roomListItem">
   <li>
-    {{#checkbox label=name checked=isSelected onClick=onSelect}}
-      ({{avatarCount}})
-    {{/checkbox}}
+      {{name}} ({{avatarCount}} players) [<a href="#" class="js-selectroom">Enter</a>]
   </li>
 </template>
 
@@ -25,6 +23,7 @@
 
 <template name="roomDetail">
   <p>Name: {{name}}</p>
-  <p>Avatars in the room:</p>
+  <p>Characters in the room:</p>
   {{> avatarList avatars=avatars}}
+  <a class="btn btn-default btn-sm js-deselectroom" href="#">Leave</a>
 </template>

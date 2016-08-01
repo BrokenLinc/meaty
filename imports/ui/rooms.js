@@ -11,14 +11,15 @@ Template.roomListItem.helpers({
     if(!currentRoom.get()) return false;
     return this._id === currentRoom.get()._id;
   },
-  onSelect() {
-    return (event) => {
+});
+
+Template.roomListItem.events({
+  'click .js-selectroom'() {
       event.preventDefault();
 
       const roomId = this._id;
 
       Meteor.call('avatars.update', Session.get('avatarId'), { roomId });
-    }
   }
 });
 
@@ -58,5 +59,13 @@ Template.roomDetail.helpers({
   avatars() {
     return Avatars.find({roomId: this._id});
   },
+});
+
+Template.roomDetail.events({
+  'click .js-deselectroom'() {
+    event.preventDefault();
+
+    Meteor.call('avatars.update', Session.get('avatarId'), { roomId: null });
+  }
 });
 
