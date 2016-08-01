@@ -1,0 +1,35 @@
+<template name="mainMenu">
+  {{> mainMenuModal}}
+</template>
+
+<template name="mainMenuModal">
+  <div class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+
+        <div class="panel panel-default" style="margin-bottom:0;">
+          <div class="panel-heading">Main Menu</div>
+          <ul class="list-group">
+
+<!--             <li class="list-group-item">
+              <button class="btn btn-sm btn-block btn-default js-settings">Settings</button>
+            </li> -->
+
+            <li class="list-group-item">
+              {{#if isAvatarSelected}}
+                <button class="btn btn-sm btn-block btn-default js-deselectavatar">Switch characters</button>
+              {{/if}}
+              <button class="btn btn-sm btn-block btn-default js-logout">Log out</button>
+            </li>
+
+            <li class="list-group-item">
+              <button class="btn btn-sm btn-block btn-default js-closeMenu">Back to game</button>
+            </li>
+
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</template>

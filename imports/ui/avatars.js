@@ -1,4 +1,30 @@
+import { Avatars } from '../api/avatars';
+
 import './avatars.html';
+
+const showAvatarCreate = new ReactiveVar(false);
+
+Template.avatarSelection.events({
+  'click .js-showavatarcreate'(event) {
+    event.preventDefault();
+    
+    showAvatarCreate.set(true);
+  },
+  'click .js-hideavatarcreate'(event) {
+    event.preventDefault();
+    
+    showAvatarCreate.set(false);
+  }
+});
+
+Template.avatarSelection.helpers({
+  showAvatarCreate() {
+    return showAvatarCreate.get() || Avatars.find({owner: Meteor.userId()}).count === 0;
+  },
+  userAvatars() {
+    return Avatars.find({owner: Meteor.userId()});
+  },
+});
 
 Template.avatarCreate.events({
   'submit .js-create'(event) {
@@ -6,15 +32,15 @@ Template.avatarCreate.events({
  
     const form = event.target;
 
-    Meteor.call('avatars.insert', form.name.value);
-    form.name.value = '';
+    Meteor.call('avatars.insert', form.name.value, function(error, id){
+      form.name.value = '';
+      showAvatarCreate.set(false);
+      Session.set('avatarId', id);
+    });
   },
 });
 
 Template.avatarManageListItem.helpers({
-  isSelected() {
-    return Session.equals('avatarId', this._id);
-  },
   onSelect() {
     return (event) => {
       event.preventDefault();
@@ -29,6 +55,15 @@ Template.avatarManageListItem.helpers({
 });
 
 Template.avatarManageListItem.events({
+  'click .js-select'(event) {
+    event.preventDefault();
+
+    if(this.owner === Meteor.userId()) {
+      Session.set('avatarId', this._id);
+    } else {
+      bootbox.alert("You don't own that!");
+    }
+  },
   'click .js-remove'(event) {
     event.preventDefault();
 

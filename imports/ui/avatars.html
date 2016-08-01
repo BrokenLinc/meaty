@@ -1,3 +1,15 @@
+<template name="avatarSelection">
+  {{#if showAvatarCreate}}
+    <h1>Create a Character</h1>
+    {{> avatarCreate}}
+    <a class="btn btn-default btn-sm js-hideavatarcreate" href="#">Cancel</a>
+  {{else}}
+    <h1>Choose a Character</h1>
+    {{> avatarManageList avatars=userAvatars}}
+    <a class="btn btn-default btn-sm js-showavatarcreate" href="#">New</a>
+  {{/if}}
+</template>
+
 <template name="avatarList">
   <ul>
     {{#each avatars}}
@@ -22,17 +34,16 @@
 
 <template name="avatarManageListItem">
   <li>
-    {{#checkbox label=name checked=isSelected onClick=onSelect}}
-      ({{friendlyUsername username}})
-      [<a class="js-remove" href="#">delete</a>]
-    {{/checkbox}}
+      {{name}}
+      [<a class="js-select" href="#">Choose</a>]
+      [<a class="js-remove" href="#">Delete</a>]
   </li>
 </template>
 
 <template name="avatarCreate">
   <form class="js-create">
     <div class="form-group">
-      <label>New Avatar</label>
+      <label>Name</label>
       <input class="form-control" type="text" name="name" placeholder="Ex: Balthazar the Greedy" autocomplete="off" role="search"/>
     </div>
   </form>

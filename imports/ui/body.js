@@ -7,6 +7,7 @@ import './forms/forms';
 import './avatars';
 import './rooms';
 import './messages';
+import './mainmenu';
 import './body.html';
 
 Template.body.onCreated(function bodyOnCreated() {
@@ -16,9 +17,6 @@ Template.body.onCreated(function bodyOnCreated() {
 });
 
 Template.body.helpers({
-  userAvatars() {
-    return Avatars.find({owner: Meteor.userId()});
-  },
   currentAvatar() {
     return currentAvatar.get();
   },

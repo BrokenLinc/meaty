@@ -16,7 +16,7 @@ Meteor.methods({
       throw new Meteor.Error('not-authorized');
     }
  
-    Rooms.insert({
+    return Rooms.insert({
       name,
       createdAt: new Date(),
       owner: this.userId,

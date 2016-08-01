@@ -29,7 +29,7 @@ Meteor.methods({
       throw new Meteor.Error('not-in-room');
     }
 
-    Messages.insert({
+    return Messages.insert({
       avatarId: avatar._id,
       avatarName: avatar.name,
       roomId: avatar.roomId,

@@ -16,7 +16,7 @@ Meteor.methods({
       throw new Meteor.Error('not-authorized');
     }
  
-    Avatars.insert({
+    return Avatars.insert({
       name,
       createdAt: new Date(),
       owner: this.userId,

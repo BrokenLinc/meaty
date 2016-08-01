@@ -19,7 +19,7 @@ Template.messageCreate.events({
   },
 });
 
-messageEmitter.on('message-new', function(id, fields) {
-  console.log(id);
-  console.log(fields);
+// This is what the game will listen to for player actions
+messageEmitter.on('message-new', function(message) {
+  console.log(message);
 });
