@@ -1,4 +1,4 @@
-import { Avatars } from '../api/avatars';
+import { Meaty } from '../../meaty/imports/meaty';
 
 import './avatars.html';
 
@@ -7,30 +7,29 @@ const showAvatarCreate = new ReactiveVar(false);
 Template.avatarSelection.events({
   'click .js-showavatarcreate'(event) {
     event.preventDefault();
-    
     showAvatarCreate.set(true);
   },
   'click .js-hideavatarcreate'(event) {
     event.preventDefault();
-    
     showAvatarCreate.set(false);
   }
 });
 
 Template.avatarSelection.helpers({
   showAvatarCreate() {
-    return showAvatarCreate.get() || Avatars.find({owner: Meteor.userId()}).count === 0;
+    return showAvatarCreate.get() || Meaty.getMyAvatars().count() === 0;
   },
   userAvatars() {
-    return Avatars.find({owner: Meteor.userId()});
+    return Meaty.getMyAvatars();
   },
 });
 
 Template.avatarCreate.events({
   'submit .js-create'(event) {
     event.preventDefault();
- 
     const form = event.target;
+
+    //Meaty.createAvatar(form.name.value, callback);
 
     Meteor.call('avatars.insert', form.name.value, function(error, id){
       form.name.value = '';
@@ -45,8 +44,8 @@ Template.avatarManageListItem.helpers({
     return (event) => {
       event.preventDefault();
 
-      if(this.owner === Meteor.userId()) {
-        Session.set('avatarId', this._id);
+      if(Meaty.isMyAvatar(this)) {
+        Meaty.selectAvatar(this._id);
       } else {
         bootbox.alert("You don't own that!");
       }
@@ -58,8 +57,8 @@ Template.avatarManageListItem.events({
   'click .js-select'(event) {
     event.preventDefault();
 
-    if(this.owner === Meteor.userId()) {
-      Session.set('avatarId', this._id);
+    if(Meaty.isMyAvatar(this)) {
+      Meaty.selectAvatar(this._id);
     } else {
       bootbox.alert("You don't own that!");
     }
@@ -67,12 +66,12 @@ Template.avatarManageListItem.events({
   'click .js-remove'(event) {
     event.preventDefault();
 
-    const id = this._id;
+    const avatar = this;
 
-    if(this.owner === Meteor.userId()) {
-      bootbox.confirm('Delete "'+this.name+'"?', (didConfirm)=> {
+    if(Meaty.isMyAvatar(avatar)) {
+      bootbox.confirm('Delete "'+avatar.name+'"?', (didConfirm)=> {
         if(didConfirm) {
-          Meteor.call('avatars.remove', id);
+          Meaty.removeAvatar(avatar._id);
         }
       });
     } else {

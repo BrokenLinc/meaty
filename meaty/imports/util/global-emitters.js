@@ -1,7 +1,7 @@
 import { Messages } from '../api/messages';
 import { currentRoom } from './global-trackers';
 
-export const messageEmitter = new EventEmitter();
+export const emitter = new EventEmitter();
 
 // Watch for "new" messages (added since tracking started)
 // ONLY look in current room
@@ -20,7 +20,7 @@ Tracker.autorun(function () {
 		}
 	}).observeChanges({
 		added: function (id, fields) {
-			messageEmitter.trigger('message-new', fields);
+			emitter.trigger('message-new', fields);
 		}
 	});
 });

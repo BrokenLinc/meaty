@@ -1,32 +1,28 @@
-import { currentAvatar } from '../util/global-trackers';
+import { Meaty } from '../../meaty/imports/meaty';
 
 import './messages.html';
 
 Template.messageCreate.events({
   'submit .js-create'(event) {
     event.preventDefault();
- 
     const form = event.target;
-
-    Meteor.call(
-      'messages.insert', 
-      currentAvatar.get()._id,
-      form.text.value,
-      {}
-    );
+    Meaty.sendMessage(form.text.value, {});
     form.text.value = '';
   },
 });
 
 Template.messageList.onRendered(function() {
   if (typeof this.data.messages === 'function') {
-    var _this = this;
+    var template = this;
+
+    //TODO: desotry this when the template is destroyed
+    // causes error when switchig rooms
     Tracker.autorun(() => {
-      this.data.messages();
+      template.data.messages();
 
       // Allow time for re-render
       Meteor.setTimeout(() => {
-        var container = _this.find('.js-scrollContainer');
+        var container = template.find('.js-scrollContainer');
         container.scrollTop = container.scrollHeight;
       }, 1);
     });

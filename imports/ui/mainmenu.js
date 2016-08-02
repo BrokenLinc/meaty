@@ -1,3 +1,5 @@
+import { Meaty } from '../../meaty/imports/meaty';
+
 import './mainmenu.html';
 
 let mainMenuIsOpen = false;
@@ -38,7 +40,6 @@ Template.mainMenu.onCreated(function(){
 });
 
 Template.mainMenu.onDestroyed(function(){
-  console.log('onDestroyed');
   window.removeEventListener('keyup', watchKeys);
 });
 
@@ -51,21 +52,16 @@ Template.mainMenuModal.helpers({
 Template.mainMenuModal.events({
   'click .js-deselectavatar'(event) {
     event.preventDefault();
-
-    Session.set('avatarId', undefined);
-
+    Meaty.selectAvatar(undefined);
     closeMainMenu();
   },
   'click .js-logout'(event) {
     event.preventDefault();
-
     Meteor.logout();
-
     closeMainMenu();
   },
   'click .js-closeMenu'(event) {
     event.preventDefault();
-
     closeMainMenu();
   },
 });
