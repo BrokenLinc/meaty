@@ -1,5 +1,4 @@
 import { currentAvatar } from '../util/global-trackers';
-import { messageEmitter } from '../util/global-emitters';
 
 import './messages.html';
 
@@ -12,14 +11,24 @@ Template.messageCreate.events({
     Meteor.call(
       'messages.insert', 
       currentAvatar.get()._id,
-      form.name.value,
+      form.text.value,
       {}
     );
-    form.name.value = '';
+    form.text.value = '';
   },
 });
 
-// This is what the game will listen to for player actions
-messageEmitter.on('message-new', function(message) {
-  console.log(message);
+Template.messageList.onRendered(function() {
+  if (typeof this.data.messages === 'function') {
+    var _this = this;
+    Tracker.autorun(() => {
+      this.data.messages();
+
+      // Allow time for re-render
+      Meteor.setTimeout(() => {
+        var container = _this.find('.js-scrollContainer');
+        container.scrollTop = container.scrollHeight;
+      }, 1);
+    });
+  }
 });

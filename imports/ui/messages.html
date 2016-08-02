@@ -1,23 +1,27 @@
 <template name="messageList">
-  <ul>
-    {{#each messages}}
-      {{> messageListItem}}
-    {{/each}}
-  </ul>
+  <div class="game-messageList-container js-scrollContainer">
+    <ul class="game-messageList">
+      {{#each messages}}
+        {{> messageListItem}}
+      {{/each}}
+    </ul>
+  </div>
 </template>
 
 <template name="messageListItem">
-  <li>
-    <span class="text-muted">[{{avatarName}}]</span> {{text}}
+  <li class="game-messageListItem">
+    <span class="game-messageListItem-author">{{avatarName}}</span> {{text}}
   </li>
 </template>
 
 <template name="messageCreate">
-  <form class="js-create">
-    <div class="form-group">
-      <input class="form-control" type="text" name="name" autocomplete="off" role="search"/>
-    </div>
-  </form>
+  <div class="game-messageCreate-container">
+    <form class="js-create">
+      <div class="form-group">
+        <input class="game-messageCreate-input form-control" type="text" name="text" autocomplete="off" role="search"/>
+      </div>
+    </form>
+  </div>
 </template>
 
 <template name="messageDetail">
