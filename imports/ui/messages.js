@@ -1,4 +1,4 @@
-import { Meaty } from 'meteor/brokenlinc:meat';
+import { Meat } from 'meteor/brokenlinc:meat';
 
 import './messages.html';
 
@@ -6,7 +6,7 @@ Template.messageCreate.events({
   'submit .js-create'(event) {
     event.preventDefault();
     const form = event.target;
-    Meaty.sendMessage(form.text.value, {});
+    Meat.sendMessage(form.text.value, {});
     form.text.value = '';
   },
 });

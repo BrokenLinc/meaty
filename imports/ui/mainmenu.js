@@ -1,4 +1,4 @@
-import { Meaty } from 'meteor/brokenlinc:meat';
+import { Meat } from 'meteor/brokenlinc:meat';
 
 import './mainmenu.html';
 
@@ -52,7 +52,7 @@ Template.mainMenuModal.helpers({
 Template.mainMenuModal.events({
   'click .js-deselectavatar'(event) {
     event.preventDefault();
-    Meaty.selectAvatar(undefined);
+    Meat.selectAvatar(undefined);
     closeMainMenu();
   },
   'click .js-logout'(event) {

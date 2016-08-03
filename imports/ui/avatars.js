@@ -1,4 +1,4 @@
-import { Meaty } from 'meteor/brokenlinc:meat';
+import { Meat } from 'meteor/brokenlinc:meat';
 
 import './avatars.html';
 
@@ -17,10 +17,10 @@ Template.avatarSelection.events({
 
 Template.avatarSelection.helpers({
   showAvatarCreate() {
-    return showAvatarCreate.get() || Meaty.getMyAvatars().count() === 0;
+    return showAvatarCreate.get() || Meat.getMyAvatars().count() === 0;
   },
   userAvatars() {
-    return Meaty.getMyAvatars();
+    return Meat.getMyAvatars();
   },
 });
 
@@ -29,7 +29,7 @@ Template.avatarCreate.events({
     event.preventDefault();
     const form = event.target;
 
-    //Meaty.createAvatar(form.name.value, callback);
+    //Meat.createAvatar(form.name.value, callback);
 
     Meteor.call('avatars.insert', form.name.value, function(error, id){
       form.name.value = '';
@@ -44,8 +44,8 @@ Template.avatarManageListItem.helpers({
     return (event) => {
       event.preventDefault();
 
-      if(Meaty.isMyAvatar(this)) {
-        Meaty.selectAvatar(this._id);
+      if(Meat.isMyAvatar(this)) {
+        Meat.selectAvatar(this._id);
       } else {
         bootbox.alert("You don't own that!");
       }
@@ -57,8 +57,8 @@ Template.avatarManageListItem.events({
   'click .js-select'(event) {
     event.preventDefault();
 
-    if(Meaty.isMyAvatar(this)) {
-      Meaty.selectAvatar(this._id);
+    if(Meat.isMyAvatar(this)) {
+      Meat.selectAvatar(this._id);
     } else {
       bootbox.alert("You don't own that!");
     }
@@ -68,10 +68,10 @@ Template.avatarManageListItem.events({
 
     const avatar = this;
 
-    if(Meaty.isMyAvatar(avatar)) {
+    if(Meat.isMyAvatar(avatar)) {
       bootbox.confirm('Delete "'+avatar.name+'"?', (didConfirm)=> {
         if(didConfirm) {
-          Meaty.removeAvatar(avatar._id);
+          Meat.removeAvatar(avatar._id);
         }
       });
     } else {

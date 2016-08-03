@@ -9,7 +9,7 @@ import { emitter } from './emitter';
 export const name = 'meat';
 
 if(Meteor.isClient) {
-	export const Meaty = {
+	export const Meat = {
 		getCurrentAvatar: () => {
 			return currentAvatar.get();
 		},

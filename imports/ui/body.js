@@ -1,4 +1,4 @@
-import { Meaty } from 'meteor/brokenlinc:meat';
+import { Meat } from 'meteor/brokenlinc:meat';
 
 import '../startup/template-helpers.js';
 import './avatars';
@@ -10,13 +10,13 @@ import './body.html';
 
 Template.body.helpers({
   currentAvatar() {
-    return Meaty.getCurrentAvatar();
+    return Meat.getCurrentAvatar();
   },
   rooms() {
-    return Meaty.getRooms();
+    return Meat.getRooms();
   },
   currentRoom() {
-    return Meaty.getCurrentRoom();
+    return Meat.getCurrentRoom();
   },
   messageLog() {
     return function() {
