@@ -1,5 +1,7 @@
-import { Avatars } from './avatars';
 import { check } from 'meteor/check';
+import { Mongo } from 'meteor/mongo';
+
+import { Avatars } from './avatars';
  
 export const Messages = new Mongo.Collection('messages');
 

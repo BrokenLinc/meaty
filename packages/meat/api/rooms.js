@@ -1,47 +1,48 @@
 import { check } from 'meteor/check';
+import { Mongo } from 'meteor/mongo';
  
-export const Avatars = new Mongo.Collection('avatars');
+export const Rooms = new Mongo.Collection('rooms');
 
 if (Meteor.isServer) {
-  Meteor.publish('avatars', () => {
-    return Avatars.find();
+  Meteor.publish('rooms', () => {
+    return Rooms.find();
   });
 }
 
 Meteor.methods({
-  'avatars.insert'(name) {
+  'rooms.insert'(name) {
     check(name, String);
  
     if (! this.userId) {
       throw new Meteor.Error('not-authorized');
     }
  
-    return Avatars.insert({
+    return Rooms.insert({
       name,
       createdAt: new Date(),
       owner: this.userId,
       username: Meteor.users.findOne(this.userId).username,
     });
   },
-  'avatars.update'(id, data) {
+  'rooms.update'(id, data) {
     check(id, String);
     check(data, Object);
  
-    if (this.userId !== Avatars.findOne(id).owner) {
+    if (this.userId !== Rooms.findOne(id).owner) {
       throw new Meteor.Error('not-authorized');
     }
 
-    Avatars.update(id, {
+    Rooms.update(id, {
       $set: data
     });
   },
-  'avatars.remove'(id) {
+  'rooms.remove'(id) {
     check(id, String);
  
-    if (this.userId !== Avatars.findOne(id).owner) {
+    if (this.userId !== Rooms.findOne(id).owner) {
       throw new Meteor.Error('not-authorized');
     }
 
-    Avatars.remove(id);
+    Rooms.remove(id);
   },
 });

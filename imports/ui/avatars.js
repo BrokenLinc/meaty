@@ -1,4 +1,4 @@
-import { Meaty } from '../../meaty/imports/meaty';
+import { Meaty } from 'meteor/brokenlinc:meat';
 
 import './avatars.html';
 
