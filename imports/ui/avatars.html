@@ -2,50 +2,61 @@
   {{#if showAvatarCreate}}
     <h1>Create a Character</h1>
     {{> avatarCreate}}
-    <a class="btn btn-default btn-sm js-hideavatarcreate" href="#">Cancel</a>
+    <hr/>
+    <a class="btn btn-link btn-sm js-hideavatarcreate" href="#">&laquo; Cancel</a>
   {{else}}
     <h1>Choose a Character</h1>
+    {{#unless userAvatars.count}}
+      You have no characters.
+    {{/unless}}
     {{> avatarManageList avatars=userAvatars}}
-    <a class="btn btn-default btn-sm js-showavatarcreate" href="#">New</a>
+    <hr/>
+    <a class="btn btn-default btn-sm js-showavatarcreate" href="#">Create a Character</a>
   {{/if}}
 </template>
 
 <template name="avatarList">
-  <ul>
-    {{#each avatars}}
-      {{> avatarListItem}}
-    {{/each}}
-  </ul>
+  <div class="avatarList-container">
+    <ul class="avatarList">
+      {{#each avatars}}
+        {{> avatarListItem}}
+      {{/each}}
+    </ul>
+  </div>
 </template>
 
 <template name="avatarListItem">
-  <li>
+  <li class="avatarListItem">
     {{name}}
   </li>
 </template>
 
 <template name="avatarManageList">
-  <ul>
-    {{#each avatars}}
-      {{> avatarManageListItem}}
-    {{/each}}
-  </ul>
+  <div class="avatarList-container">
+    <ul class="avatarList">
+      {{#each avatars}}
+        {{> avatarManageListItem}}
+      {{/each}}
+    </ul>
+  </div>
 </template>
 
 <template name="avatarManageListItem">
-  <li>
-      {{name}}
-      [<a class="js-select" href="#">Choose</a>]
-      [<a class="js-remove" href="#">Delete</a>]
+  <li class="avatarListItem">
+      <a class="avatarListItem-choose btn btn-primary btn-lg js-select" href="#">{{name}}</a>
+      <a class="avatarListItem-delete btn btn-danger btn-lg js-remove" href="#">
+        <i class="fa fa-trash"></i>
+      </a>
   </li>
 </template>
 
 <template name="avatarCreate">
-  <form class="js-create">
+  <form class="form-inline js-create">
     <div class="form-group">
       <label>Name</label>
       <input class="form-control" type="text" name="name" placeholder="Ex: Balthazar the Greedy" autocomplete="off" role="search"/>
     </div>
+    <button type="submit" class="btn btn-primary">Create</button>
   </form>
 </template>
 

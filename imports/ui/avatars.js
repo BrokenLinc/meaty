@@ -17,10 +17,13 @@ Template.avatarSelection.events({
 
 Template.avatarSelection.helpers({
   showAvatarCreate() {
-    return showAvatarCreate.get() || Meat.getMyAvatars().count() === 0;
+    return showAvatarCreate.get();
   },
   userAvatars() {
     return Meat.getMyAvatars();
+  },
+  hasAvatars() {
+    return Meat.getMyAvatars().count() > 0;
   },
 });
 
