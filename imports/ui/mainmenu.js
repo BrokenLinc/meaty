@@ -5,17 +5,12 @@ import './mainmenu.html';
 let mainMenuIsOpen = false;
 
 function toggleMainMenu() {
-  if(mainMenuIsOpen) {
-    closeMainMenu();
-  } else {
-    openMainMenu();
-  }
+  if(mainMenuIsOpen) closeMainMenu();
+  else openMainMenu();
 }
 
 function openMainMenu() {
-  Modal.show('mainMenuModal', function() {
-
-  },{
+  Modal.show('mainMenuModal', {
     keyboard: false,
     backdrop: 'static'
   });
@@ -23,15 +18,13 @@ function openMainMenu() {
 }
 
 function closeMainMenu() {
-  Modal.hide();
+  Modal.hide(); // Hides ALL modals
   mainMenuIsOpen = false;
 }
 
 function watchKeys(event) {
   var key = event.which || event.keyCode;
-  if(key === 27) {
-    toggleMainMenu();
-  }
+  if(key === 27) toggleMainMenu(); //ESC key
 }
 
 Template.mainMenu.onCreated(function(){

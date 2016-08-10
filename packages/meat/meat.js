@@ -22,8 +22,8 @@ if(Meteor.isClient) {
 		selectAvatar: (id) => {
 			Session.set('avatarId', id);
 		},
-		createAvatar: (name, data) => {
-
+		createAvatar: (name, data, callback) => {
+    		Meteor.call('avatars.insert', name, data, callback);
 		},
 		removeAvatar: (id) => {
 			Meteor.call('avatars.remove', id);

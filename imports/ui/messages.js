@@ -11,14 +11,14 @@ Template.messageCreate.events({
   },
 });
 
+// Keep scrolling to the bottom on every new message
+let messageTrackerComputation;
 Template.messageList.onRendered(function() {
   if (typeof this.data.messages === 'function') {
     var template = this;
 
-    //TODO: desotry this when the template is destroyed
-    // causes error when switchig rooms
-    Tracker.autorun(() => {
-      template.data.messages();
+    messageTrackerComputation = Tracker.autorun(() => {
+      template.data.messages(); //create a Message dependency
 
       // Allow time for re-render
       Meteor.setTimeout(() => {
@@ -27,4 +27,7 @@ Template.messageList.onRendered(function() {
       }, 1);
     });
   }
+});
+Template.messageList.onDestroyed(function() {
+  if(messageTrackerComputation) messageTrackerComputation.stop();
 });

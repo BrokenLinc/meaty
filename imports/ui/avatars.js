@@ -32,27 +32,11 @@ Template.avatarCreate.events({
     event.preventDefault();
     const form = event.target;
 
-    //Meat.createAvatar(form.name.value, callback);
-
-    Meteor.call('avatars.insert', form.name.value, function(error, id){
+    Meat.createAvatar(form.name.value, null, function(error, id){
       form.name.value = '';
       showAvatarCreate.set(false);
-      Session.set('avatarId', id);
+      Meat.selectAvatar(id);
     });
-  },
-});
-
-Template.avatarManageListItem.helpers({
-  onSelect() {
-    return (event) => {
-      event.preventDefault();
-
-      if(Meat.isMyAvatar(this)) {
-        Meat.selectAvatar(this._id);
-      } else {
-        bootbox.alert("You don't own that!");
-      }
-    };
   },
 });
 

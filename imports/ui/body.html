@@ -23,11 +23,11 @@
           {{> roomCreate}}
         {{/if}}
 
-        {{#if currentRoom}}
           <h1>Chat</h1>
           {{> messageList messages=messageLog}}
-          {{> messageCreate}}
-        {{/if}}
+          {{#if currentRoom}}
+            {{> messageCreate}}
+          {{/if}}
 
       {{/if}}
 

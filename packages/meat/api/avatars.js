@@ -10,7 +10,7 @@ if (Meteor.isServer) {
 }
 
 Meteor.methods({
-  'avatars.insert'(name) {
+  'avatars.insert'(name, data) { //TODO: use data
     check(name, String);
  
     if (! this.userId) {
