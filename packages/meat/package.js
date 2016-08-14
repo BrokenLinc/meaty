@@ -12,12 +12,17 @@ Package.describe({
 
 Package.onUse(function(api) {
   api.versionsFrom('1.4');
+  
   api.use('ecmascript');
+  api.use('erasaur:meteor-lodash');
+
   api.use('reactive-var', 'client');
   api.use('session', 'client');
   api.use('tracker', 'client');
   api.use('raix:eventemitter', 'client');
+
   api.use('mongo', 'server');
+
   api.mainModule('meat.js');
   api.add_files("client.js", "client");
   api.add_files("server.js", "server");

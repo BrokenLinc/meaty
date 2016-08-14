@@ -38,6 +38,11 @@ Template.avatarCreate.events({
       Meat.selectAvatar(id);
     });
   },
+  'keyup .js-avatarname'(event) {
+    const el = event.target;
+    let sanitized = Meat.sanitizeAvatarName(el.value);
+    if(sanitized !== el.value) el.value = sanitized;
+  },
 });
 
 Template.avatarManageListItem.events({

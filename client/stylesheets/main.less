@@ -7,7 +7,7 @@
 }
 
 // messageList
-.messageList-container {
+.game-messageList-container {
 	height: 10em;
 	border: 1px solid @text-color;
 	background: @input-group-addon-bg;
@@ -17,18 +17,24 @@
 	border-top-right-radius: @border-radius-base;
 	border-bottom-width: 0;
 }
-.messageList {
+.game-messageList {
 	list-style: none;
 	margin: 0;
 	padding: 0.5em;
 }
 
 // messageListItem
-.messageListItem {
+.game-messageListItem {
+	&.mod-private {
+		color: #f39;
 
+		.game-messageListItem-author {
+			color: #f39;
+		}
+	}
 }
-.messageListItem-author {
-	color: @brand-success;
+.game-messageListItem-author {
+	color: #777;
 
 	&:before {
 		content: "[";
@@ -39,10 +45,10 @@
 }
 
 // messageCreate
-.messageCreate-container {
+.game-messageCreate-container {
 
 }
-.messageCreate-input {
+.game-messageCreate-input {
 	border-color: @text-color;
 	border-top-left-radius: 0;
 	border-top-right-radius: 0;

@@ -1,5 +1,6 @@
 import { check } from 'meteor/check';
 import { Mongo } from 'meteor/mongo';
+import { sanitizeAvatarName } from '../helpers';
  
 export const Avatars = new Mongo.Collection('avatars');
 
@@ -16,12 +17,17 @@ Meteor.methods({
     if (! this.userId) {
       throw new Meteor.Error('not-authorized');
     }
+
+    let sanitizedName = sanitizeAvatarName(name);
+    if(Avatars.findOne({ name })) {
+      throw new Meteor.Error('avatar-name-taken');
+    }
  
     return Avatars.insert({
       name,
-      createdAt: new Date(),
       owner: this.userId,
       username: Meteor.users.findOne(this.userId).username,
+      createdAt: new Date(),
     });
   },
   'avatars.update'(id, data) {

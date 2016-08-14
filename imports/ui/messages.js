@@ -6,9 +6,22 @@ Template.messageCreate.events({
   'submit .js-create'(event) {
     event.preventDefault();
     const form = event.target;
-    Meat.sendMessage(form.text.value, {});
+    Meat.parseCommand(form.text.value);
     form.text.value = '';
   },
+});
+
+Template.messageListItem.helpers({
+  authorLabel() {
+    // if I sent a public message, show who it went to instead
+    if(this.subtype === 'PRIVATE' && this.avatarId === Meat.getCurrentAvatar()._id) {
+      if(this.recipientAvatarId === this.avatarId) {
+        return Meat.friendlyAvatarName(this.recipientAvatarName + '\'s inner monologue');
+      }
+      return 'to ' + Meat.friendlyAvatarName(this.recipientAvatarName);
+    }
+    return Meat.friendlyAvatarName(this.avatarName);
+  }
 });
 
 // Keep scrolling to the bottom on every new message

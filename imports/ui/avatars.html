@@ -27,7 +27,7 @@
 
 <template name="avatarListItem">
   <li class="avatarListItem">
-    {{name}}
+    {{friendlyAvatarName name}}
   </li>
 </template>
 
@@ -43,7 +43,7 @@
 
 <template name="avatarManageListItem">
   <li class="avatarListItem">
-      <a class="avatarListItem-choose btn btn-primary btn-lg js-select" href="#">{{name}}</a>
+      <a class="avatarListItem-choose btn btn-primary btn-lg js-select" href="#">{{friendlyAvatarName name}}</a>
       <a class="avatarListItem-delete btn btn-danger btn-lg js-remove" href="#">
         <i class="fa fa-trash"></i>
       </a>
@@ -54,13 +54,13 @@
   <form class="form-inline js-create">
     <div class="form-group">
       <label>Name</label>
-      <input class="form-control" type="text" name="name" placeholder="Ex: Balthazar the Greedy" autocomplete="off" role="search"/>
+      <input class="form-control js-avatarname" type="text" name="name" placeholder="Ex: Balthazar the Greedy" autocomplete="off" role="search"/>
     </div>
     <button type="submit" class="btn btn-primary">Create</button>
   </form>
 </template>
 
 <template name="avatarDetail">
-  <p>Name: {{name}}</p>
+  <p>Name: {{friendlyAvatarName name}}</p>
   <p class="text-muted">Coming soon: equipment, stats, etc.</p>
 </template>
