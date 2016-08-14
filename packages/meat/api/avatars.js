@@ -20,7 +20,10 @@ Meteor.methods({
 
     let sanitizedName = sanitizeAvatarName(name);
     if(Avatars.findOne({ name })) {
-      throw new Meteor.Error('avatar-name-taken');
+      throw new Meteor.Error(
+        'avatar-name-taken',
+        'Sorry, that name is already taken.'
+      );
     }
  
     return Avatars.insert({

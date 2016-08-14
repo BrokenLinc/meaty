@@ -33,6 +33,10 @@ Template.avatarCreate.events({
     const form = event.target;
 
     Meat.createAvatar(form.name.value, null, function(error, id){
+      if(error && error.error === 'avatar-name-taken') {
+        toastr.error(e.reason);
+        return;
+      }
       form.name.value = '';
       showAvatarCreate.set(false);
       Meat.selectAvatar(id);

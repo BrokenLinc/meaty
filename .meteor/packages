@@ -32,5 +32,6 @@ accounts-password@1.2.12
 useraccounts:bootstrap
 peppelg:bootstrap-3-modal
 mizzao:bootboxjs
+chrismbeckett:toastr
 raix:eventemitter
 brokenlinc:meat
