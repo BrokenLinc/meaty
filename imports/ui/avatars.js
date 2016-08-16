@@ -2,6 +2,7 @@ import { Meat } from 'meteor/brokenlinc:meat';
 
 import './avatars.html';
 
+// TODO: look for leaner way to handle view toggling (no routes)
 const showAvatarCreate = new ReactiveVar(false);
 
 Template.avatarSelection.events({
@@ -42,6 +43,7 @@ Template.avatarCreate.events({
       Meat.selectAvatar(id);
     });
   },
+  // TODO look into lean way to restrict field input, or abstract it out.
   'keyup .js-avatarname'(event) {
     const el = event.target;
     let sanitized = Meat.sanitizeAvatarName(el.value);
@@ -53,6 +55,7 @@ Template.avatarManageListItem.events({
   'click .js-select'(event) {
     event.preventDefault();
 
+    // TODO: move ownership check into Meat, return error in callback
     if(Meat.isMyAvatar(this)) {
       Meat.selectAvatar(this._id);
     } else {
@@ -64,6 +67,7 @@ Template.avatarManageListItem.events({
 
     const avatar = this;
 
+    // TODO: move ownership check into Meat, return error in callback
     if(Meat.isMyAvatar(avatar)) {
       bootbox.confirm('Delete "'+avatar.name+'"?', (didConfirm)=> {
         if(didConfirm) {

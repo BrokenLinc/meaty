@@ -8,12 +8,10 @@
       {{#if currentAvatar}}
 
         {{#with currentAvatar}}
-          <h1>My Character</h1>
           {{> avatarDetail}}
         {{/with}}
         
         {{#if currentRoom}}
-          <h1>Current Room</h1>
           {{#with currentRoom}}
             {{> roomDetail}}
           {{/with}}

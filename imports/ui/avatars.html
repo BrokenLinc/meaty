@@ -16,17 +16,15 @@
 </template>
 
 <template name="avatarList">
-  <div class="avatarList-container">
-    <ul class="avatarList">
-      {{#each avatars}}
-        {{> avatarListItem}}
-      {{/each}}
-    </ul>
-  </div>
+  <ul class="list-group">
+    {{#each avatars}}
+      {{> avatarListItem}}
+    {{/each}}
+  </ul>
 </template>
 
 <template name="avatarListItem">
-  <li class="avatarListItem">
+  <li class="list-group-item">
     {{friendlyAvatarName name}}
   </li>
 </template>
@@ -61,6 +59,12 @@
 </template>
 
 <template name="avatarDetail">
-  <p>Name: {{friendlyAvatarName name}}</p>
-  <p class="text-muted">Coming soon: equipment, stats, etc.</p>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h6 class="panel-title">{{friendlyAvatarName name}}, Lvl 6 Baker</h6>
+    </div>
+    <div class="panel-body">
+      <p class="text-muted">Coming soon: equipment, stats, etc.</p>
+    </div>
+  </div>
 </template>

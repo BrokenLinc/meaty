@@ -14,6 +14,7 @@ Template.messageCreate.events({
 Template.messageListItem.helpers({
   authorLabel() {
     // if I sent a public message, show who it went to instead
+    // TODO: template helper for this in Meat
     if(this.subtype === 'PRIVATE' && this.avatarId === Meat.getCurrentAvatar()._id) {
       if(this.recipientAvatarId === this.avatarId) {
         return Meat.friendlyAvatarName(this.recipientAvatarName + '\'s inner monologue');
@@ -25,6 +26,8 @@ Template.messageListItem.helpers({
 });
 
 // Keep scrolling to the bottom on every new message
+// TODO: link a [tracked function] to a [selector string] helper for this in a UI package
+//    as in: Potato.stayScrolledDown(selector, fn);
 let messageTrackerComputation;
 Template.messageList.onRendered(function() {
   if (typeof this.data.messages === 'function') {

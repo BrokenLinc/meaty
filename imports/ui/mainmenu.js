@@ -2,6 +2,11 @@ import { Meat } from 'meteor/brokenlinc:meat';
 
 import './mainmenu.html';
 
+//TODO: wrap the modal toggling in a UI helper
+//  as in, const mm = Potato.modalManager(template, options, toggleKey(s))
+//  mm.toggle(), mm.open(), mm.close(), mm.isOpen
+//  and maybe more
+
 let mainMenuIsOpen = false;
 
 function toggleMainMenu() {

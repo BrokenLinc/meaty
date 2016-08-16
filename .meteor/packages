@@ -19,7 +19,6 @@ ecmascript@0.5.7              # Enable ECMAScript2015+ syntax in app code
 
 #autopublish             # Publish all data to the clients (for prototyping)
 #insecure                # Allow all DB writes from clients (for prototyping)
-erasaur:meteor-lodash
 matb33:collection-hooks
 session@1.1.6
 less@2.7.4
@@ -33,5 +32,6 @@ useraccounts:bootstrap
 peppelg:bootstrap-3-modal
 mizzao:bootboxjs
 chrismbeckett:toastr
-raix:eventemitter
+#raix:eventemitter
 brokenlinc:meat
+brokenlinc:sauce

@@ -23,8 +23,10 @@
 </template>
 
 <template name="roomDetail">
-  <p>Name: {{name}}</p>
-  <p>Characters in the room:</p>
-  {{> avatarList avatars=avatars}}
-  <a class="btn btn-default btn-sm js-deselectroom" href="#">Leave</a>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Location: {{name}} </h3> <a class="js-deselectroom" href="#">Leave</a>
+    </div>
+    {{> avatarList avatars=avatars}}
+  </div>
 </template>

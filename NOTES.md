@@ -4,18 +4,20 @@ avatar
 	.partyId = randomUniqueInt() // create party
 
 message
-	.type = 'PRIVATE_MESSAGE'
-	.recipientUserId = 3
-
-message
-	.type = 'PARTY_MESSAGE'
+	.subtype = 'PARTY'
 	.partyId = 1234567890
 
 message
 	.type = 'PARTY_INVITATION'
-	.recipientUserId = 3
+	.recipientAvatarName = 'frank'
+	.recipientAvatarId = 3
 	.data
 		.partyId = 1234567890
+
+message
+	.type = 'SYSTEM'
+	.subtype = 'PARTY_REJECTION'
+	.text = 'Frank has declined your party invitation.'
 
 room
 	.partyId = 1234567890 // private room
@@ -27,18 +29,21 @@ room
 
 
 
-// Meat.inviteToParty(userId); // create party & invite with partyId
-// Meat.inviteToParty({ avatarName:'Frank' }); // Does a lookup
-// Meat.inviteToParty({ avatarId: 3 }); // Does a lookup
+// Meat.inviteToParty('frank');
 // Meat.joinParty(1234567890);
 // Meat.leaveParty();
+// Meat.declinePartyInvitation(recipientAvatarId);
 
-// Make Avatar names unique (restrict creation)
-// Display PMs in a unique way in the log
-// Display Party invitations in a unique way in the log
-// keep log of invitations in sessions
-// Have a button to join/ignore the party
-// Restrict visibility of & entry into private rooms
+// [X] Make Avatar names unique (restrict creation)
+// [X] Display PMs in a unique way in the log
+// [ ] A list of people in your party
+// [ ] Display Party invitations in a unique way in the log
+// [ ] keep log of invitations in sessions (latest from each unique avatar)
+// [ ] Have a button to join/ignore the party
+// [ ] Display Party messages in a unique way in the log
+// [ ] Joining a party clears the log
+// [ ] Ability to create a party room
+// [ ] Restrict visibility of & entry into private rooms
 
 
 
@@ -52,8 +57,6 @@ room
 //   ROOM
 
 // type: PARTY_INVITATION
-
-// type: PARTY_REJECTION
 
 // type: COMBAT
 // subtype:
