@@ -55,7 +55,7 @@ Template.avatarManageListItem.events({
   'click .js-select'(event) {
     event.preventDefault();
 
-    // TODO: move ownership check into Meat, return error in callback
+    // TODO: move ownership check into Meat, return error in callback/try/catch
     if(Meat.isMyAvatar(this)) {
       Meat.selectAvatar(this._id);
     } else {
@@ -67,7 +67,7 @@ Template.avatarManageListItem.events({
 
     const avatar = this;
 
-    // TODO: move ownership check into Meat, return error in callback
+    // TODO: move ownership check into Meat, return error in callback/try/catch
     if(Meat.isMyAvatar(avatar)) {
       bootbox.confirm('Delete "'+avatar.name+'"?', (didConfirm)=> {
         if(didConfirm) {

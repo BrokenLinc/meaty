@@ -1,6 +1,5 @@
 import { Meat } from 'meteor/brokenlinc:meat';
 
-import '../startup/template-helpers.js';
 import './avatars';
 import './rooms';
 import './messages';
@@ -20,7 +19,7 @@ Template.body.helpers({
   },
   messageLog() {
     return function() {
-      return Session.get('messageLog');
+      return Session.get('messageLog'); // populated in Meat
     }
   },
 });

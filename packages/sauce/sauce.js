@@ -1,5 +1,7 @@
-// Write your package code here!
+import { ScrollDowner } from './scrolldowner';
 
-// Variables exported by this module can be imported by other packages and
-// applications. See sauce-tests.js for an example of importing.
 export const name = 'sauce';
+
+export const Sauce = {
+	ScrollDowner
+};
