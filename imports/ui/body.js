@@ -18,8 +18,6 @@ Template.body.helpers({
     return Meat.getCurrentRoom();
   },
   messageLog() {
-    return function() {
-      return Session.get('messageLog'); // populated in Meat
-    }
+    return Session.get.bind(Session, 'messageLog');
   },
 });

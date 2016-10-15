@@ -15,5 +15,6 @@ export const ScrollDowner = function ScrollDowner(selectorFn, fn) {
 ScrollDowner.prototype.destroy = function() {
   if(this.messageTrackerComputation) {
     this.messageTrackerComputation.stop();
+    delete this.messageTrackerComputation;
   }
 };
