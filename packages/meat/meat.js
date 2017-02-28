@@ -2,7 +2,7 @@ import { Avatars } from './api/avatars';
 import { Rooms } from './api/rooms';
 import { Messages } from './api/messages';
 import { friendlyAvatarName, sanitizeAvatarName} from './helpers';
-import { currentAvatar, currentRoom } from './trackers';
+import { currentAvatar, currentRoom, currentPartyAvatars } from './trackers';
 import { emitter } from './emitter';
 
 export const name = 'meat';
@@ -41,7 +41,7 @@ if(Meteor.isClient) {
 		getRooms: () => {
 	    	return Rooms.find({});
 		},
-		selectRoom: (roomId) => {
+		enterRoom: (roomId) => {
 			return Meteor.call('avatars.update', Session.get('avatarId'), { roomId });
 		},
 		exitRoom: (roomId) => {
@@ -71,26 +71,34 @@ if(Meteor.isClient) {
 				text
 			);
 		},
-		inviteToParty: (name) => {
-			const user = Avatars.findOne({ name });
-			if(!user) return false;
-
-			//TODO: send invitation
+		inviteToParty: (recipientAvatarName) => {
+			return Meteor.call(
+				'messages.sendPartyInvitation', 
+				Session.get('avatarId'),
+				recipientAvatarName
+			);
 		},
 		joinParty: (partyId) => {
+			Session.set('partyInvitations', []);
 			return Meteor.call('avatars.update', Session.get('avatarId'), { partyId: partyId });
 		},
 		leaveParty: () => {
 			return Meteor.call('avatars.update', Session.get('avatarId'), { partyId: null });
 		},
+		getCurrentPartyRoster: () => {
+			return currentPartyAvatars.get();
+		},
 		parseCommand: (command) => {
 			if(command.substring(0,1) === '/') {
 				const commandParts = command.split(' ');
 				const slashCommand = commandParts.shift().substring(1).toLowerCase();
-				if(slashCommand === 't') {
+				if(slashCommand === 't' || slashCommand === 'tell') {
 					const recipientAvatarName = commandParts.shift().toLowerCase();
 					const text = commandParts.join(' ');
 					Meat.sendPrivateMessage(text, recipientAvatarName);
+				} else if(slashCommand === 'i' || slashCommand === 'inv' || slashCommand === 'invite') {
+					const recipientAvatarName = commandParts.shift().toLowerCase();
+					Meat.inviteToParty(recipientAvatarName);
 				}
 			} else {
 				Meat.sendRoomMessage(command);

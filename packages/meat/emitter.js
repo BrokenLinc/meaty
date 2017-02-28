@@ -56,5 +56,22 @@ if(Meteor.isClient) {
 				emitter.trigger('message-new', fields);
 			}
 		});
+
+		// Watch for "new" invitations (added since tracking started)
+		Messages.find({
+			$or: [{
+				type: 'INVITATION',
+				subtype: 'PARTY',
+				recipientAvatarId: currentAvatar.get()._id
+			}],
+			createdAt: {
+				$gte : new Date()
+			}
+		}).observeChanges({
+			added: function (id, fields) {
+				emitter.trigger('message-new', fields);
+				emitter.trigger('invitation-new', fields);
+			}
+		});
 	});
 }

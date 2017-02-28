@@ -3,6 +3,7 @@ import { Meat } from 'meteor/brokenlinc:meat';
 import './avatars';
 import './rooms';
 import './messages';
+import './parties';
 import './mainmenu';
 
 import './body.html';

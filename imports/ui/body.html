@@ -20,12 +20,16 @@
           {{> roomList rooms=rooms}}
           {{> roomCreate}}
         {{/if}}
+        
+        {{> partyInvitations}}
 
-          <h1>Chat</h1>
-          {{> messageList messages=messageLog}}
-          {{#if currentRoom}}
-            {{> messageCreate}}
-          {{/if}}
+        {{> partyDetail}}
+
+        <h1>Chat</h1>
+        {{> messageList messages=messageLog}}
+        {{#if currentRoom}}
+          {{> messageCreate}}
+        {{/if}}
 
       {{/if}}
 

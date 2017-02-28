@@ -9,8 +9,8 @@
 </template>
 
 <template name="messageListItem">
-  <li class="game-messageListItem {{cssModClass subtype}}">
-    <span class="game-messageListItem-author">{{authorLabel this}}</span> {{text}}
+  <li class="game-messageListItem {{cssModClass this}}">
+    <span class="game-messageListItem-author">{{authorLabel this}}</span> {{messageContent this}}
   </li>
 </template>
 
@@ -22,8 +22,4 @@
       </div>
     </form>
   </div>
-</template>
-
-<template name="messageDetail">
-  ---
 </template>

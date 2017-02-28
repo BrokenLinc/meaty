@@ -1,0 +1,35 @@
+<template name="partyInvitations">
+  {{#if hasPartyInvitations}}
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Party Invitations</h3>
+      </div>
+      {{> invitationList invitations=partyInvitations}}
+    </div>
+  {{/if}}
+</template>
+
+<template name="invitationList">
+    <ul class="list-group">
+      {{#each invitations}}
+        {{> invitationListItem}}
+      {{/each}}
+    </ul>
+</template>
+
+<template name="invitationListItem">
+  <li class="list-group-item">
+    {{avatarName}} <a class="js-joinparty" href="#">join</a>
+  </li>
+</template>
+
+<template name="partyDetail">
+  {{#if partyAvatars.count}}
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Party </h3> <a class="js-leaveparty" href="#">Leave</a>
+      </div>
+      {{> avatarList avatars=partyAvatars}}
+    </div>
+  {{/if}}
+</template>

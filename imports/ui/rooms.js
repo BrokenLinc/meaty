@@ -12,9 +12,9 @@ Template.roomListItem.helpers({
 });
 
 Template.roomListItem.events({
-  'click .js-selectroom'(event) {
+  'click .js-enterroom'(event) {
     event.preventDefault();
-    Meat.selectRoom(this._id);
+    Meat.enterRoom(this._id);
   }
 });
 
@@ -37,7 +37,7 @@ Template.roomDetail.helpers({
 });
 
 Template.roomDetail.events({
-  'click .js-deselectroom'(event) {
+  'click .js-exitroom'(event) {
     event.preventDefault();
     Meat.exitRoom();
   }
